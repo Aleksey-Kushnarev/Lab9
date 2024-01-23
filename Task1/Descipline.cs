@@ -6,31 +6,70 @@ using System.Threading.Tasks;
 
 namespace Task1
 {
-    internal class Descipline
+    public class Descipline
     {
         private string name;
         private int contactHours;
         private int selfHours;
         private int creditUnit;
 
+
+        public string Name
+        {
+            get => name;
+            set
+            {
+                name = value;
+            }
+        }
+
+        public int ContactHours
+        {
+            get => contactHours;
+
+            set
+            {
+                contactHours = value >= 0 ? value : 0;
+            }
+        }
+
+        public int SelfHours
+        {
+            get => selfHours;
+
+            set
+            {
+                selfHours = value >= 0 ? value : 0;
+            }
+        }
+
+        public int CreditUnit
+        {
+            get => creditUnit;
+            set
+            {
+                creditUnit = value;
+            }
+        }
+
         public Descipline(string name, int contactHours, int selfHours)
         {
-            this.name = name;
-            this.contactHours = contactHours;
-            this.selfHours = selfHours;
-            this.creditUnit = this.countCreditUnit();
+            Name = name;
+            ContactHours = contactHours;
+            SelfHours = selfHours;
+            CreditUnit = this.countCreditUnit();
         }
         public Descipline(string name)
         {
-            this.name=name;
-            this.contactHours = 0;
-            this.selfHours = 0;
-            this.creditUnit = this.countCreditUnit();
+            Name=name;
+            ContactHours = 0;
+            SelfHours = 0;
+            CreditUnit = this.countCreditUnit();
         }
 
         private int countCreditUnit()
         {
-            int creditUnit = (this.selfHours + this.contactHours) / 38;
+            int creditUnit = (SelfHours + ContactHours) / 38;
             return creditUnit;
         }
 
@@ -99,8 +138,14 @@ namespace Task1
         }
 
         public static implicit operator string(Descipline descipline)
-        {
-            return $"Descipline {descipline.name} has {descipline.contactHours} contact hours and {descipline.selfHours} self hours.";
+        { try
+            {
+                return $"Descipline {descipline.name} has {descipline.contactHours} contact hours and {descipline.selfHours} self hours.";
+            }
+            catch (System.NullReferenceException e)
+            {
+                return "Error! Such descipline not found";
+            }
         }
 
         // Операции сравнения
@@ -131,6 +176,7 @@ namespace Task1
             return res;
         }
 
+
         
         public static bool operator !=(Descipline descipline1, Descipline descipline2)
         {
@@ -138,9 +184,9 @@ namespace Task1
             return res;
         }
 
-        public int getCreditUnit()
+        public int GetCreditUnit()
         {
-            return this.creditUnit;
+            return CreditUnit;
         }
 
 

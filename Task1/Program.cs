@@ -14,7 +14,8 @@ namespace Task1
             Descipline d = new Descipline("math", 56, 24);
             Descipline d2 = new Descipline("rus", 58, 24);
             Descipline d3 = new Descipline("IT", 24, 56);
-            int t = d.getCreditUnit();
+            Console.WriteLine(d3.CreditUnit);
+            int t = d.GetCreditUnit();
 
             Console.WriteLine((string)d);
             Console.WriteLine(t); // Вывод зачетных единиц
@@ -28,10 +29,27 @@ namespace Task1
             Console.WriteLine((string)d3);
             double a = (double)d3;
             int b = d3;
-            Console.WriteLine(a);
-            Console.WriteLine(b);
+
+            DesciplineArray dArr = new DesciplineArray(d, d2, d3);
+            DesciplineArray dArrC = DesciplineArray.Copy(dArr);
+            Console.WriteLine(dArr);
+            Console.WriteLine(dArrC);
+
 
             Console.ReadLine();
+        }
+
+
+        static void CountAverageValue(DesciplineArray dArr)
+        {
+            float res = 0.0f;
+            foreach (Descipline x in dArr)
+            {
+                res += x.CreditUnit;
+            }
+
+            res /= dArr.Length;
+            Console.WriteLine(res);
         }
     }
 }
