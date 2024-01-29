@@ -45,11 +45,7 @@ namespace Task1
 
         public int CreditUnit
         {
-            get => creditUnit;
-            set
-            {
-                creditUnit = value;
-            }
+            get => (SelfHours + ContactHours) / 38;
         }
 
         public Descipline(string name, int contactHours, int selfHours)
@@ -57,20 +53,12 @@ namespace Task1
             Name = name;
             ContactHours = contactHours;
             SelfHours = selfHours;
-            CreditUnit = this.countCreditUnit();
         }
         public Descipline(string name)
         {
             Name=name;
             ContactHours = 0;
             SelfHours = 0;
-            CreditUnit = this.countCreditUnit();
-        }
-
-        private int countCreditUnit()
-        {
-            int creditUnit = (SelfHours + ContactHours) / 38;
-            return creditUnit;
         }
 
         /// <summary>

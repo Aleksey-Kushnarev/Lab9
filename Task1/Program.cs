@@ -11,7 +11,7 @@ namespace Task1
     {
         static void Main(string[] args)
         {
-            Descipline d = new Descipline("math", 56, 24);
+            Descipline d = new Descipline("math", 54, 24);
             Descipline d2 = new Descipline("rus", 58, 24);
             Descipline d3 = new Descipline("IT", 24, 56);
             Console.WriteLine(d3.CreditUnit);
@@ -31,8 +31,10 @@ namespace Task1
             int b = d3;
 
             DesciplineArray dArr = new DesciplineArray(d, d2, d3);
-            DesciplineArray dArrC = DesciplineArray.Copy(dArr);
+            DesciplineArray dArrC = (DesciplineArray)dArr.Clone();
+            dArrC[2] = new Descipline("qwe", 24, 23); 
             Console.WriteLine(dArr);
+            
             Console.WriteLine(dArrC);
 
 

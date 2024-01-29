@@ -9,10 +9,17 @@ using System.Threading.Tasks;
 
 namespace Task1
 {
-    public class DesciplineArray : IEnumerable, IEnumerator
+    public class DesciplineArray : IEnumerable, IEnumerator, ICloneable
     {
         Descipline[] desciplines;
         private int index = -1;
+
+        Descipline[] Desciplines
+        {
+            get=>this.desciplines;
+            set => this.desciplines = value;
+
+        }
         
         public int Length
         {
@@ -38,7 +45,7 @@ namespace Task1
         /// Заполнение случайными числами
         /// </summary>
         /// <param name="length">Длина массива</param>
-        public DesciplineArray(int length, bool rndFlag=true)
+        public DesciplineArray(int length)
         {
             this.desciplines = new Descipline[length];
             Random rnd = new Random();
@@ -91,6 +98,11 @@ namespace Task1
             }
         }
 
+
+        public object Clone()
+        {
+            return new DesciplineArray(Desciplines);
+        }
 
 
         public static DesciplineArray Copy(DesciplineArray arr)
