@@ -14,22 +14,16 @@ namespace Task1
         Descipline[] desciplines;
         private int index = -1;
 
-        Descipline[] Desciplines
-        {
-            get=>this.desciplines;
-            set => this.desciplines = value;
-
-        }
         
         public int Length
         {
             get { return desciplines.Length;}
-            set { desciplines = new Descipline[value]; }
+          
         }
 
         public DesciplineArray()
         {
-
+            this.desciplines = Array.Empty<Descipline>();
         }
 
         public DesciplineArray(params Descipline[] numbers)
@@ -37,7 +31,7 @@ namespace Task1
             this.desciplines = new Descipline[numbers.Length];
             for (int i = 0; i < numbers.Length; i++)
             {
-                this.desciplines[i] = numbers[i];
+                this.desciplines[i] = new Descipline(numbers[i].Name, numbers[i].ContactHours, numbers[i].SelfHours);
             }
         }
 
@@ -63,9 +57,9 @@ namespace Task1
         public override string ToString()
         {
             string res ="";
-            foreach (var VARIABLE in desciplines)
+            foreach (Descipline element in desciplines)
             {
-                res += VARIABLE + "\n";
+                res += element + "\n";
             }
 
             return res;
@@ -88,34 +82,18 @@ namespace Task1
             }
             set
             {
-                try
-                {
-                    desciplines[i] = value;
-                }
-                catch {
-                    Console.WriteLine("Error! Index out of range!");
-                }
+                desciplines[i] = new Descipline(value);
             }
         }
 
 
         public object Clone()
         {
-            return new DesciplineArray(Desciplines);
+            return new DesciplineArray(desciplines);
         }
 
 
-        public static DesciplineArray Copy(DesciplineArray arr)
-        {
-            DesciplineArray newArr = new DesciplineArray();
-            newArr.Length = arr.Length;
-            for (int i = 0; i < arr.Length; i++)
-            {
-                newArr[i] = arr[i];
-            }
-
-            return newArr;
-        }
+ 
 
         public IEnumerator GetEnumerator()
         {

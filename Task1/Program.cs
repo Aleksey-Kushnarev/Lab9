@@ -12,30 +12,31 @@ namespace Task1
         static void Main(string[] args)
         {
             Descipline d = new Descipline("math", 54, 24);
-            Descipline d2 = new Descipline("rus", 58, 24);
-            Descipline d3 = new Descipline("IT", 24, 56);
-            Console.WriteLine(d3.CreditUnit);
-            int t = d.GetCreditUnit();
-
-            Console.WriteLine((string)d);
-            Console.WriteLine(t); // Вывод зачетных единиц
-            Console.WriteLine(!d); // Соотношение самостоятельной работы ко всей работе в %
-            Console.WriteLine($"{d} < {d2} {d < d2}");
-            Console.WriteLine($"{d} > {d2} {d > d2}");
-            Console.WriteLine($"{d3} == {d} {d == d3}");
-            Console.WriteLine($"{d} != {d3} {d != d3}");
-            Console.WriteLine((string)d3);
-            d3 += 32;
-            Console.WriteLine((string)d3);
-            double a = (double)d3;
-            int b = d3;
-
-            DesciplineArray dArr = new DesciplineArray(d, d2, d3);
-            DesciplineArray dArrC = (DesciplineArray)dArr.Clone();
-            dArrC[2] = new Descipline("qwe", 24, 23); 
+            Descipline d2 = new Descipline(d);
+            DesciplineArray dArr = new DesciplineArray(d, d2);
             Console.WriteLine(dArr);
+            d.Name = "abc";
+           /* try
+            {
+                Console.WriteLine(dArr[3].ToString());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }*/
+
+            try
+            {
+                dArr[5] = d;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            Console.WriteLine(d <= d2);
             
-            Console.WriteLine(dArrC);
+           
 
 
             Console.ReadLine();
