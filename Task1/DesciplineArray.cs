@@ -50,6 +50,21 @@ namespace Task1
             }
         }
 
+
+
+        public void Add(Descipline descipline)
+        {
+            Descipline[] newArr = new Descipline[desciplines.Length + 1];
+            for (int i = 0; i < desciplines.Length; i++)
+            {
+                newArr[i] = new Descipline(desciplines[i].Name, desciplines[i].ContactHours, desciplines[i].SelfHours);
+            }
+
+            newArr[newArr.Length - 1] = descipline;
+            desciplines = newArr;
+        }
+
+
         /// <summary>
         /// Вывод коллекции
         /// </summary>
@@ -74,11 +89,7 @@ namespace Task1
         {
             get
             {
-                try
-                {
-                    return desciplines[i];
-                }
-                catch { return null; }
+                return desciplines[i];
             }
             set
             {

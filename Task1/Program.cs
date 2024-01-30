@@ -11,9 +11,11 @@ namespace Task1
     {
         static void Main(string[] args)
         {
-            Descipline d = new Descipline("math", 54, 24);
-            Descipline d2 = new Descipline(d);
-            DesciplineArray dArr = new DesciplineArray(d, d2);
+            Descipline d = new Descipline("math", 20, 80);
+            Console.WriteLine((double)d);
+            Descipline d3 = new Descipline();
+            DesciplineArray dArr = new DesciplineArray(d);
+            dArr.Add(d3);
             Console.WriteLine(dArr);
             d.Name = "abc";
            /* try
@@ -34,7 +36,6 @@ namespace Task1
                 Console.WriteLine(e);
             }
 
-            Console.WriteLine(d <= d2);
             
            
 

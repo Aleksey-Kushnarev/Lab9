@@ -52,11 +52,11 @@ namespace Task1
         }
 
 
-        public Descipline(string name, int ContactHours, int SelfHours)
+        public Descipline(string name, int contactHours, int selfHours)
         {
             Name = name;
-            ContactHours = ContactHours >= 0 ? ContactHours:0;
-            SelfHours =  SelfHours >= 0 ? SelfHours : 0;
+            ContactHours = contactHours <= 0 ? 0 : contactHours;
+            SelfHours =  selfHours <= 0 ? 0 : selfHours;
         }
         public Descipline(string name)
         {
@@ -91,32 +91,25 @@ namespace Task1
 
         public static Descipline operator +(Descipline descipline, int hours)
         {
-            if (descipline.SelfHours - hours >= 0)
+            if (descipline.SelfHours - hours < 0)
             {
-                descipline.SelfHours -= hours;
-                descipline.ContactHours += hours;
-                return descipline;
+                throw new Exception("SelfHours must be greater than 0");
             }
-            else
-            {
-                Console.WriteLine("Error");
-                return descipline;
-            }
+
+            descipline.ContactHours += hours;
+            descipline.SelfHours -= hours;
+            return descipline;
         }
 
         public static Descipline operator ++(Descipline descipline)
         {
-            if (descipline.SelfHours - 2 >= 0)
+            if (descipline.SelfHours - 2 < 0)
             {
-                descipline.SelfHours -= 2;
-                descipline.ContactHours += 2;
-                return descipline;
+                throw new Exception("SelfHours must be greater than 0");
             }
-            else
-            {
-                Console.WriteLine("Error");
-                return descipline;
-            }
+            descipline.ContactHours += 2;
+            descipline.SelfHours -= 2;
+            return descipline;
         }
 
         // Операции преобразования
@@ -175,10 +168,6 @@ namespace Task1
             return res;
         }
 
-        public int GetCreditUnit()
-        {
-            return CreditUnit;
-        }
 
 
         public override string ToString()
