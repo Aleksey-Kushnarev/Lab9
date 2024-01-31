@@ -1,37 +1,40 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace Task1
 {
-    public class DesciplineArray : IEnumerable, IEnumerator, ICloneable
+    public class DisciplineArray : IEnumerable, IEnumerator, ICloneable
     {
-        Descipline[] desciplines;
+        Discipline[] Disciplines;
         private int index = -1;
 
         
         public int Length
         {
-            get { return desciplines.Length;}
+            get { return Disciplines.Length;}
           
         }
 
-        public DesciplineArray()
+        /// <summary>
+        /// Создание пустой коллекции
+        /// </summary>
+        public DisciplineArray()
         {
-            this.desciplines = Array.Empty<Descipline>();
+            Program.cDisciplineArray++;
+            this.Disciplines = Array.Empty<Discipline>();
         }
 
-        public DesciplineArray(params Descipline[] numbers)
+        /// <summary>
+        /// Создание коллекции с данными
+        /// </summary>
+        /// <param name="numbers">Дисциплины, которое нужно включить в коллекцию</param>
+        public DisciplineArray(params Discipline[] numbers)
         {
-            this.desciplines = new Descipline[numbers.Length];
+            Program.cDisciplineArray++;
+            this.Disciplines = new Discipline[numbers.Length];
             for (int i = 0; i < numbers.Length; i++)
             {
-                this.desciplines[i] = new Descipline(numbers[i].Name, numbers[i].ContactHours, numbers[i].SelfHours);
+                this.Disciplines[i] = new Discipline(numbers[i].Name, numbers[i].ContactHours, numbers[i].SelfHours);
             }
         }
 
@@ -39,29 +42,32 @@ namespace Task1
         /// Заполнение случайными числами
         /// </summary>
         /// <param name="length">Длина массива</param>
-        public DesciplineArray(int length)
+        public DisciplineArray(int length)
         {
-            this.desciplines = new Descipline[length];
+            Program.cDisciplineArray++;
+            this.Disciplines = new Discipline[length];
             Random rnd = new Random();
             for (int i = 0; i < length; i++)
             {
-                Descipline descipline = new Descipline($"descipline #{i + 1}", rnd.Next(100), rnd.Next(100));
-                this.desciplines[i] = descipline;
+                Discipline Discipline = new Discipline($"Discipline #{i + 1}", rnd.Next(100), rnd.Next(100));
+                this.Disciplines[i] = Discipline;
             }
         }
 
-
-
-        public void Add(Descipline descipline)
+        /// <summary>
+        /// Добавление элемента в конец коллекции
+        /// </summary>
+        /// <param name="discipline">Элемент, который добавляем</param>
+        public void Add(Discipline discipline)
         {
-            Descipline[] newArr = new Descipline[desciplines.Length + 1];
-            for (int i = 0; i < desciplines.Length; i++)
+            Discipline[] newArr = new Discipline[Disciplines.Length + 1];
+            for (int i = 0; i < Disciplines.Length; i++)
             {
-                newArr[i] = new Descipline(desciplines[i].Name, desciplines[i].ContactHours, desciplines[i].SelfHours);
+                newArr[i] = new Discipline(Disciplines[i].Name, Disciplines[i].ContactHours, Disciplines[i].SelfHours);
             }
 
-            newArr[newArr.Length - 1] = descipline;
-            desciplines = newArr;
+            newArr[newArr.Length - 1] = discipline;
+            Disciplines = newArr;
         }
 
 
@@ -72,7 +78,7 @@ namespace Task1
         public override string ToString()
         {
             string res ="";
-            foreach (Descipline element in desciplines)
+            foreach (Discipline element in Disciplines)
             {
                 res += element + "\n";
             }
@@ -85,27 +91,22 @@ namespace Task1
         /// </summary>
         /// <param name="i">Индекс элемента</param>
         /// <returns>Значение элемента с индексом i</returns>
-        public Descipline this[int i]
+        public Discipline this[int i]
         {
             get
             {
-                return desciplines[i];
+                return Disciplines[i];
             }
             set
             {
-                desciplines[i] = new Descipline(value);
+                Disciplines[i] = new Discipline(value);
             }
         }
 
-
         public object Clone()
         {
-            return new DesciplineArray(desciplines);
+            return new DisciplineArray(Disciplines);
         }
-
-
- 
-
         public IEnumerator GetEnumerator()
         {
             return this;
@@ -114,7 +115,7 @@ namespace Task1
         // Реализуем интерфейс IEnumerator
         public bool MoveNext()
         {
-            if (index == desciplines.Length - 1)
+            if (index == Disciplines.Length - 1)
             {
                 Reset();
                 return false;
@@ -134,7 +135,7 @@ namespace Task1
         {
             get
             {
-                return desciplines[index];
+                return Disciplines[index];
             }
         }
     }

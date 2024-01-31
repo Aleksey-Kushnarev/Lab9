@@ -7,82 +7,82 @@ using Task1;
 namespace TestDesc
 {
     [TestClass]
-    public class TestClassDescipline
+    public class TestClassDiscipline
     {
         [TestMethod]
-        public void TestDesciplineMakeObject()
+        public void TestDisciplineMakeObject()
         {
             //Arrange
-            Task1.Descipline expected = new Task1.Descipline("math", -24, -52);
+            Task1.Discipline expected = new Task1.Discipline("math", -24, -52);
             //Act
-            Task1.Descipline actual = new Task1.Descipline("math");
+            Task1.Discipline actual = new Task1.Discipline("math");
             //Assert
             Assert.IsTrue(expected == actual);
         }
 
         [TestMethod]
-        public void TestDesciplineCreditUnit()
+        public void TestDisciplineCreditUnit()
         {
             //Arrange
-            Task1.Descipline expected = new Task1.Descipline("math", 24, 52);
+            Task1.Discipline expected = new Task1.Discipline("math", 24, 52);
             //Act
-            Task1.Descipline actual = new Task1.Descipline("math", 38, 38);
+            Task1.Discipline actual = new Task1.Discipline("math", 38, 38);
             //Assert
             Assert.AreEqual(expected.CreditUnit, actual.CreditUnit);
         }
 
         [TestMethod]
-        public void TestDesciplineComparisonIsGreater()
+        public void TestDisciplineComparisonIsGreater()
         {
             //Arrange
-            Task1.Descipline expected = new Task1.Descipline("math", 48, 52);
+            Task1.Discipline expected = new Task1.Discipline("math", 48, 52);
             //Act
-            Task1.Descipline actual = new Task1.Descipline("math", 38, 38);
+            Task1.Discipline actual = new Task1.Discipline("math", 38, 38);
             //Assert
             Assert.IsTrue(expected > actual);
             Assert.IsFalse(expected <= actual);
         }
 
         [TestMethod]
-        public void TestDesciplineComparisonIsLess()
+        public void TestDisciplineComparisonIsLess()
         {
             //Arrange
-            Task1.Descipline expected = new Task1.Descipline("math", 12, 22);
+            Task1.Discipline expected = new Task1.Discipline("math", 12, 22);
             //Act
-            Task1.Descipline actual = new Task1.Descipline("math", 38, 38);
+            Task1.Discipline actual = new Task1.Discipline("math", 38, 38);
             //Assert
             Assert.IsTrue(expected < actual);
             Assert.IsFalse(expected >= actual);
         }
 
         [TestMethod]
-        public void TestDesciplineComparisonIsEqual()
+        public void TestDisciplineComparisonIsEqual()
         {
             //Arrange
-            Task1.Descipline expected = new Task1.Descipline("math", 40, 22);
+            Task1.Discipline expected = new Task1.Discipline("math", 40, 22);
             //Act
-            Task1.Descipline actual = new Task1.Descipline(expected);
+            Task1.Discipline actual = new Task1.Discipline(expected);
             //Assert
             Assert.IsTrue(expected == actual);
             Assert.IsFalse(expected != actual);
         }
 
         [TestMethod]
-        public void TestDesciplineToString()
+        public void TestDisciplineToString()
         {
             //Arrange
-            Task1.Descipline expected = new Task1.Descipline();
+            Task1.Discipline expected = new Task1.Discipline();
             //Act
-            string actual = "Descipline default has 0 Contact hours and 0 Self hours.";
+            string actual = "Discipline default has 0 Contact hours and 0 Self hours.";
             //Assert
             Assert.AreEqual(expected.ToString(), actual);
         }
 
         [TestMethod]
-        public void TestDesciplineToInt()
+        public void TestDisciplineToInt()
         {
             //Arrange
-            Task1.Descipline expected = new Task1.Descipline("math", 40, 22);
+            Task1.Discipline expected = new Task1.Discipline("math", 40, 22);
             //Act
             int actual = 20;
             //Assert
@@ -90,10 +90,10 @@ namespace TestDesc
         }
 
         [TestMethod]
-        public void TestDesciplineToDouble()
+        public void TestDisciplineToDouble()
         {
             //Arrange
-            Task1.Descipline expected = new Task1.Descipline("math", 20, 80);
+            Task1.Discipline expected = new Task1.Discipline("math", 20, 80);
             //Act
             double actual = 0.2d;
             //Assert
@@ -102,46 +102,46 @@ namespace TestDesc
         }
 
         [TestMethod]
-        public void TestDesciplineFailInc()
+        public void TestDisciplineFailInc()
         {
             //Arrange
-            Task1.Descipline expected = new Descipline("Pretty");
+            Task1.Discipline expected = new Discipline("Pretty");
             Assert.ThrowsException<Exception>(()=>expected++);
         }
 
         [TestMethod]        
-        public void TestDesciplineNotFailInc()
+        public void TestDisciplineNotFailInc()
         {
             //Arrange
-            Task1.Descipline expected = new Descipline("Pretty", 12, 24);
+            Task1.Discipline expected = new Discipline("Pretty", 12, 24);
             //Act
             int actual = 7;
             Assert.AreEqual(expected++, actual);
         }
         [TestMethod]
-        public void TestDesciplineFailAdd()
+        public void TestDisciplineFailAdd()
         {
             //Arrange
-            Task1.Descipline expected = new Descipline("Pretty");
+            Task1.Discipline expected = new Discipline("Pretty");
 
             Assert.ThrowsException<Exception>(() => expected+=7);
         }
 
         [TestMethod]
-        public void TestDesciplineNotFailAdd()
+        public void TestDisciplineNotFailAdd()
         {
             //Arrange
-            Task1.Descipline expected = new Descipline("Pretty", 12, 24);
+            Task1.Discipline expected = new Discipline("Pretty", 12, 24);
             //Act
             int actual = 8;
             Assert.AreEqual(expected+4, actual);
         }
 
         [TestMethod]
-        public void TestDesciplineInterestCalculation()
+        public void TestDisciplineInterestCalculation()
         {
             //Arrange
-            Task1.Descipline expected = new Descipline("Pretty", 24, 24);
+            Task1.Discipline expected = new Discipline("Pretty", 24, 24);
             //Act
             int actual = 50;
             Assert.AreEqual(!expected, actual);

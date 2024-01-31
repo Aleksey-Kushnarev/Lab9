@@ -1,18 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.SqlServer.Server;
 
 namespace Task1
 {
-    public class Descipline
+    public class Discipline
     {
-        
-
-
         public string Name
         {
             get;
@@ -43,136 +34,131 @@ namespace Task1
             get => SelfHours + ContactHours;
         }
 
-        public Descipline(Descipline descipline)
-        {
-          
-          Name = descipline.Name;
-          ContactHours = descipline.ContactHours;
-          SelfHours = descipline.SelfHours;
+        public Discipline(Discipline discipline)
+        { 
+            Program.cDiscipline++; 
+            Name = discipline.Name; 
+            ContactHours = discipline.ContactHours; 
+            SelfHours = discipline.SelfHours;
         }
 
 
-        public Descipline(string name, int contactHours, int selfHours)
+        public Discipline(string name, int contactHours, int selfHours)
         {
+            Program.cDiscipline++;
             Name = name;
             ContactHours = contactHours <= 0 ? 0 : contactHours;
             SelfHours =  selfHours <= 0 ? 0 : selfHours;
         }
-        public Descipline(string name)
+        public Discipline(string name)
         {
-            Name=name;
+            Program.cDiscipline++;
+            Name =name;
             ContactHours = 0;
             SelfHours = 0;
         }
 
-        public Descipline()
+        public Discipline()
         {
+            Program.cDiscipline++;
             Name = "default";
             ContactHours = 0;
             SelfHours = 0;
         }
 
-       
-
         /// <summary>
         /// определение процентного соотношения самостоятельной работы к общему количеству часов, выделенных на дисциплину, результат – вещественное число от 0 до 100 
         /// </summary>
-        /// <param name="descipline1"></param>
-        /// <param name="descipline2"></param>
+        /// <param name="discipline"></param>
         /// <returns></returns>
 
-        public static double operator !(Descipline descipline)
+        public static double operator !(Discipline discipline)
         {
-            double res = (descipline.SelfHours) / 1.0 / descipline.SumHours * 100;
+            double res = (discipline.SelfHours) / 1.0 / discipline.SumHours * 100;
             return res;
         }
 
         // Операции увеличения часов
 
-        public static Descipline operator +(Descipline descipline, int hours)
+        public static Discipline operator +(Discipline discipline, int hours)
         {
-            if (descipline.SelfHours - hours < 0)
+            if (discipline.SelfHours - hours < 0)
             {
-                throw new Exception("SelfHours must be greater than 0");
+                throw new Exception("ERROR! SelfHours must be greater than 0");
             }
 
-            descipline.ContactHours += hours;
-            descipline.SelfHours -= hours;
-            return descipline;
+            discipline.ContactHours += hours;
+            discipline.SelfHours -= hours;
+            return discipline;
         }
 
-        public static Descipline operator ++(Descipline descipline)
+        public static Discipline operator ++(Discipline discipline)
         {
-            if (descipline.SelfHours - 2 < 0)
+            if (discipline.SelfHours - 2 < 0)
             {
-                throw new Exception("SelfHours must be greater than 0");
+                throw new Exception("ERROR! SelfHours must be greater than 0");
             }
-            descipline.ContactHours += 2;
-            descipline.SelfHours -= 2;
-            return descipline;
+            discipline.ContactHours += 2;
+            discipline.SelfHours -= 2;
+            return discipline;
         }
 
         // Операции преобразования
         /// <summary>
         /// Доля аудиторных часов от всех часов
         /// </summary>
-        /// <param name="descipline"></param>
-        public static explicit operator double (Descipline descipline)
+        /// <param name="discipline"></param>
+        public static explicit operator double (Discipline discipline)
         {
-            return (descipline.ContactHours) / 1.0 / descipline.SumHours;
+            return (discipline.ContactHours) / 1.0 / discipline.SumHours;
         }
 
         /// <summary>
         /// Количество аудиторных занятий
         /// </summary>
-        /// <param name="descipline"></param>
-        public static implicit operator int(Descipline descipline)
+        /// <param name="discipline"></param>
+        public static implicit operator int(Discipline discipline)
         {
-            return (descipline.ContactHours) / 2;
+            return (discipline.ContactHours) / 2;
         }
-
 
         // Операции сравнения
 
-        public static bool operator <(Descipline descipline1, Descipline descipline2)
+        public static bool operator <(Discipline discipline1, Discipline discipline2)
         {
-            bool res = descipline1.SumHours < descipline2.SumHours;
+            bool res = discipline1.SumHours < discipline2.SumHours;
             return res;
         }
-        public static bool operator >(Descipline descipline1, Descipline descipline2)
+        public static bool operator >(Discipline discipline1, Discipline discipline2)
         {
-            bool res = descipline1.SumHours > descipline2.SumHours;
+            bool res = discipline1.SumHours > discipline2.SumHours;
             return res;
         }
-        public static bool operator <=(Descipline descipline1, Descipline descipline2)
+        public static bool operator <=(Discipline discipline1, Discipline discipline2)
         {
-            bool res = descipline1.SumHours <= descipline2.SumHours;
+            bool res = discipline1.SumHours <= discipline2.SumHours;
             return res;
         }
-        public static bool operator >=(Descipline descipline1, Descipline descipline2)
+        public static bool operator >=(Discipline discipline1, Discipline discipline2)
         {
-            bool res = descipline1.SumHours >= descipline2.SumHours;
+            bool res = discipline1.SumHours >= discipline2.SumHours;
             return res;
         }
-        public static bool operator ==(Descipline descipline1, Descipline descipline2)
+        public static bool operator ==(Discipline discipline1, Discipline discipline2)
         {
-            bool res = descipline1.SumHours == descipline2.SumHours;
-            return res;
-        }
-
-
-        
-        public static bool operator !=(Descipline descipline1, Descipline descipline2)
-        {
-            bool res = descipline1.SumHours != descipline2.SumHours;
+            bool res = discipline1.SumHours == discipline2.SumHours;
             return res;
         }
 
-
+        public static bool operator !=(Discipline discipline1, Discipline discipline2)
+        {
+            bool res =  discipline1.SumHours != discipline2.SumHours;
+            return res;
+        }
 
         public override string ToString()
         {
-            return $"Descipline {this.Name} has {this.ContactHours} Contact hours and {this.SelfHours} Self hours.";
+            return $"Discipline {this.Name} has {this.ContactHours} Contact hours and {this.SelfHours} Self hours.";
         }
 
     }
